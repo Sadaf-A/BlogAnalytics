@@ -3,7 +3,7 @@ const BlogStatsService = require("./BlogStatsService");
 
 exports.fetchAndAnalyzeBlogs = async () => {
 
-    const response = BlogStatsService.getBlogData();
+    const response = await BlogStatsService.getBlogData();
 
     const blogs = response.data.blogs;
     
@@ -24,7 +24,7 @@ exports.fetchAndAnalyzeBlogs = async () => {
     };
 };
 
-const memoizedFetchAndAnalyzeBlogs = _.memoize(fetchAndAnalyzeBlogs, (blogs) => blogs.length, 60000);
+const memoizedFetchAndAnalyzeBlogs = _.memoize(this.fetchAndAnalyzeBlogs, (blogs) => blogs.length, 60000);
 
 exports.getBlogAnalytics = async (blogs) => {
     return memoizedFetchAndAnalyzeBlogs(blogs);
