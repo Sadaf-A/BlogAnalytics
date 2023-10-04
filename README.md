@@ -9,6 +9,7 @@ Blog Analytics is like your trusty companion on this blogging adventure. It can:
 - Find the blog with the longest title. 📏
 - Help you count the number of blogs with "privacy" in their titles. 🔍
 - Create a list of unique blog titles, just for you! 📝
+- help your search for a blog with specific word in the title
 
 ## How to Get Started?
 
