@@ -1,13 +1,17 @@
 const express = require('express');
-const BlogStatsService = require('./service/BlogStatsService');
 const BlogAnalyticsService = require('./service/BlogAnalyticsService');
+const BlogSearchService = require('./service/BlogSearchSerVice');
 const app = express();
 
-app.get("/api/blog-stats", async (req, res) => {
-    const response = await BlogStatsService.getBlogData();
-    console.log(response.data.blogs);
-    const count = BlogAnalyticsService.getBlogCount(response.data.blogs);
-    console.log(count);
+app.get("/api/blog-stats", async (_req, res) => {
+    const analytics = BlogAnalyticsService.fetchAndAnalyzeBlogs();
+    console.log(analytics);
+    res.send("ok");
+})
+
+app.get("/api/search-blogs/:query", async (_req, res) => {
+    const results = BlogSearchService.getSearchResults(req.params.query);
+    console.log(results);
     res.send("ok");
 })
 
